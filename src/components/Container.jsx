@@ -126,6 +126,7 @@ const Container = () => {
         rounded={"md"}
         p={6}
         overflow={"hidden"}
+       
       >
         <Box
           h={"210px"}
@@ -134,9 +135,12 @@ const Container = () => {
           mx={-6}
           mb={6}
           pos={"relative"}
+          align="center"
         >
           {/* inout */}
-          <Text>{countDown}</Text>
+          <Text align="center" color="#00000" fontSize="1rem" pt="1rem" pb="1rem" fontWeight="bold">
+            Counter: {countDown}sec
+          </Text>
           <InputComp
             refer={textInput}
             disabled={status !== "started"}
@@ -145,9 +149,28 @@ const Container = () => {
             val={currInput}
             onChange={(e) => setCurrInput(e.target.value)}
           />
-          <Button onClick={start}>Start</Button>
+          <Button
+            size="md"
+            mt="2rem"
+            height="48px"
+            align="center"
+            width="30%"
+            color="white"
+            bg="rgb(210,27,89, 1)"
+            borderRadius="5rem"
+            boxShadow="0 8px 32px 0 rgba( 31, 38, 135, 0.37 )"
+            backdropFilter="blur( 19px )"
+            border="1px solid rgba( 255, 255, 255, 0.18 )"
+            _hover={{ bg: "#d11b59" }}
+            _focus={{
+              outline: "none",
+            }}
+            onClick={start}
+          >
+            Start
+          </Button>
         </Box>
-        <Stack>
+        <Stack  textAlign="center">
           <Text
             color={"green.500"}
             textTransform={"uppercase"}
@@ -162,7 +185,9 @@ const Container = () => {
             fontSize={"2xl"}
             fontFamily={"body"}
           >
-            Type the Words below
+            {status === "started"
+              ? " Type the Words below"
+              : "Click the Start button to begin"}
           </Heading>
           {status === "started" && (
             <Box>
@@ -178,8 +203,6 @@ const Container = () => {
                       {char}
                     </Text>
                   ))}
-
-                  {/* <Text></Text> */}
                 </Text>
               ))}
             </Box>
